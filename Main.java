@@ -9,15 +9,15 @@ public class Main {
     Scanner scan = new Scanner(System.in);
 
     // masukkan nim
-    System.out.print("NIM: ");
+    System.out.print("NIM\t\t: ");
     String nim = scan.nextLine(); 
 
     // masukkan nama
-    System.out.print("Nama Lengkap: ");
+    System.out.print("Nama Lengkap\t: ");
     String nama = scan.nextLine();
 
     // masukkan jenis kelamin
-    System.out.print("Jenis Kelamin: \n1. Laki-laki\n2. Perempuan\nPilih: ");
+    System.out.print("Jenis Kelamin\t: \n1. Laki-laki\n2. Perempuan\nPilih: ");
     int option = scan.nextInt();
     String jenis_kelamin = jenis_kelamin(option);
     scan.nextLine();
@@ -26,31 +26,31 @@ public class Main {
     DateTimeFormatter datetimeformat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     LocalDateTime now = LocalDateTime.now();
     String tanggal = datetimeformat.format(now);
-    System.out.println("Tanggal input: " + tanggal);
+    System.out.println("Tanggal Input\t: " + tanggal);
 
     // nama mata kuliah
-    System.out.print("Mata Kuliah: ");
+    System.out.print("Mata Kuliah\t: ");
     String matkul = scan.nextLine();
 
     // masukkan jumlah absensi
-    System.out.print("Jumlah Absensi (1-14): ");
+    System.out.print("Jumlah Absensi (1-14)\t: ");
     int absensi = scan.nextInt();
 
     // nilai tugas
-    System.out.print("Nilai Tugas (1-100): ");
+    System.out.print("Nilai Tugas (1-100)\t: ");
     int tugas = scan.nextInt();
 
     // nilai uts
-    System.out.print("Nilai UTS (1-100): ");
+    System.out.print("Nilai UTS (1-100)\t: ");
     int uts = scan.nextInt();
 
     // nilai uas
-    System.out.print("Nilai UAS (1-100): ");
+    System.out.print("Nilai UAS (1-100)\t: ");
     int uas = scan.nextInt();
     scan.close();
 
     // nilai akhir dan keterangan
-    System.out.println("====================================\nNIM \t\t:" + nim + "\nNama \t\t:" + nama + "\nMata Kuliah \t:" + matkul + "\nNilai Akhir \t:" + nilai_akhir(tugas,uts,uas) + "\nKeterangan \t:" + keterangan(nilai_akhir(tugas,uts,uas)));
+    System.out.println("====================================\nNIM \t\t: " + nim + "\nNama \t\t: " + nama + "\nMata Kuliah \t: " + matkul + "\nNilai Akhir \t: " + nilai_akhir(tugas,uts,uas) + "\nGrade \t\t: " + keterangan(nilai_akhir(tugas,uts,uas)) + "\nKeterangan \t: " + lulus_tidak(keterangan(nilai_akhir(tugas,uts,uas))));
   }
 
   // fungsi pilih jenis kelamin
@@ -96,6 +96,19 @@ public class Main {
       ket = "A-";
     }else if(n >= 80 && n <= 100){
       ket = "A";
+    }
+    return(ket);
+  }
+
+  // keterangan lulus/tidak
+  private static String lulus_tidak(String z){
+    String ket = "";
+    if (z == "A" || z == "B" || z == "C" || z == "C+" || z == "B+" || z == "B-" || z == "A-"){
+      ket = "LULUS";
+    }else if (z == "D" || z == "E"){
+      ket = "TIDAK LULUS";
+    }else{
+      ket = "Tidak teridentifikasi";
     }
     return(ket);
   }
